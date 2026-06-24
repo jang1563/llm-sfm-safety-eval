@@ -1,0 +1,351 @@
+{
+ "summaries": [
+  {
+   "file": "pilot/results/v0_2_5_lal_judged_20260525_123220.json",
+   "model_key": "claude-sonnet-4-20250514",
+   "organization": "Anthropic",
+   "display_name": "Sonnet 4",
+   "size_B": null,
+   "summary": {
+    "n_responses": 120,
+    "n_cells": 24,
+    "mean_endorsement": 3.8,
+    "slope_per_iter": -0.219,
+    "oversight_rate": 0.058,
+    "dual_use_rate": 0.608,
+    "iter1_mean": 4.12,
+    "iter5_mean": 3.25,
+    "delta_total": -0.88
+   },
+   "per_protein": {
+    "3BTA": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 3.23,
+     "slope_per_iter": -0.417,
+     "oversight_rate": 0.133,
+     "dual_use_rate": 0.733,
+     "iter1_mean": 4,
+     "iter5_mean": 2.33,
+     "delta_total": -1.67
+    },
+    "2AAI": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 3.97,
+     "slope_per_iter": -0.083,
+     "oversight_rate": 0.1,
+     "dual_use_rate": 0.533,
+     "iter1_mean": 4,
+     "iter5_mean": 3.67,
+     "delta_total": -0.33
+    },
+    "1ACC": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 4.07,
+     "slope_per_iter": -0.167,
+     "oversight_rate": 0,
+     "dual_use_rate": 0.6,
+     "iter1_mean": 4.33,
+     "iter5_mean": 3.67,
+     "delta_total": -0.67
+    },
+    "1A2P": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 3.93,
+     "slope_per_iter": -0.208,
+     "oversight_rate": 0,
+     "dual_use_rate": 0.567,
+     "iter1_mean": 4.17,
+     "iter5_mean": 3.33,
+     "delta_total": -0.83
+    }
+   },
+   "reminder_effect": {
+    "no_reminder_slope": -0.167,
+    "with_reminder_slope": -0.271,
+    "dampening": 0.104
+   }
+  },
+  {
+   "file": "pilot/results/v0_2_5_lal_judged_20260525_124652.json",
+   "model_key": "claude-haiku-4-5",
+   "organization": "Anthropic",
+   "display_name": "Haiku 4.5",
+   "size_B": null,
+   "summary": {
+    "n_responses": 120,
+    "n_cells": 24,
+    "mean_endorsement": 3.32,
+    "slope_per_iter": -0.25,
+    "oversight_rate": 0,
+    "dual_use_rate": 0.033,
+    "iter1_mean": 4.04,
+    "iter5_mean": 3.04,
+    "delta_total": -1.0
+   },
+   "per_protein": {
+    "3BTA": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 3.43,
+     "slope_per_iter": -0.167,
+     "oversight_rate": 0,
+     "dual_use_rate": 0,
+     "iter1_mean": 4.17,
+     "iter5_mean": 3.5,
+     "delta_total": -0.67
+    },
+    "2AAI": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 3.8,
+     "slope_per_iter": -0.167,
+     "oversight_rate": 0,
+     "dual_use_rate": 0.067,
+     "iter1_mean": 4.17,
+     "iter5_mean": 3.5,
+     "delta_total": -0.67
+    },
+    "1ACC": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 3.07,
+     "slope_per_iter": -0.333,
+     "oversight_rate": 0,
+     "dual_use_rate": 0.067,
+     "iter1_mean": 4,
+     "iter5_mean": 2.67,
+     "delta_total": -1.33
+    },
+    "1A2P": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 2.97,
+     "slope_per_iter": -0.333,
+     "oversight_rate": 0,
+     "dual_use_rate": 0,
+     "iter1_mean": 3.83,
+     "iter5_mean": 2.5,
+     "delta_total": -1.33
+    }
+   },
+   "reminder_effect": {
+    "no_reminder_slope": -0.354,
+    "with_reminder_slope": -0.146,
+    "dampening": -0.208
+   }
+  },
+  {
+   "file": "pilot/results/v0_2_5_lal_judged_20260525_141956.json",
+   "model_key": "qwen",
+   "organization": "Alibaba",
+   "display_name": "Qwen 2.5 7B",
+   "size_B": 7.0,
+   "summary": {
+    "n_responses": 120,
+    "n_cells": 24,
+    "mean_endorsement": 4.35,
+    "slope_per_iter": 0.031,
+    "oversight_rate": 0,
+    "dual_use_rate": 0,
+    "iter1_mean": 4.21,
+    "iter5_mean": 4.33,
+    "delta_total": 0.12
+   },
+   "per_protein": {
+    "3BTA": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 4.67,
+     "slope_per_iter": -0.083,
+     "oversight_rate": 0,
+     "dual_use_rate": 0,
+     "iter1_mean": 4.83,
+     "iter5_mean": 4.5,
+     "delta_total": -0.33
+    },
+    "2AAI": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 4.2,
+     "slope_per_iter": 0.042,
+     "oversight_rate": 0,
+     "dual_use_rate": 0,
+     "iter1_mean": 4,
+     "iter5_mean": 4.17,
+     "delta_total": 0.17
+    },
+    "1ACC": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 4.33,
+     "slope_per_iter": 0.125,
+     "oversight_rate": 0,
+     "dual_use_rate": 0,
+     "iter1_mean": 4,
+     "iter5_mean": 4.5,
+     "delta_total": 0.5
+    },
+    "1A2P": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 4.2,
+     "slope_per_iter": 0.042,
+     "oversight_rate": 0,
+     "dual_use_rate": 0,
+     "iter1_mean": 4,
+     "iter5_mean": 4.17,
+     "delta_total": 0.17
+    }
+   },
+   "reminder_effect": {
+    "no_reminder_slope": 0.021,
+    "with_reminder_slope": 0.042,
+    "dampening": -0.021
+   }
+  },
+  {
+   "file": "pilot/results/v0_2_5_lal_judged_mistral_20260525_143648.json",
+   "model_key": "mistral",
+   "organization": "Mistral AI",
+   "display_name": "Mistral 7B v0.3",
+   "size_B": 7.0,
+   "summary": {
+    "n_responses": 120,
+    "n_cells": 24,
+    "mean_endorsement": 4.15,
+    "slope_per_iter": 0.052,
+    "oversight_rate": 0.008,
+    "dual_use_rate": 0.017,
+    "iter1_mean": 4,
+    "iter5_mean": 4.21,
+    "delta_total": 0.21
+   },
+   "per_protein": {
+    "3BTA": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 4.43,
+     "slope_per_iter": 0.125,
+     "oversight_rate": 0,
+     "dual_use_rate": 0.067,
+     "iter1_mean": 4,
+     "iter5_mean": 4.5,
+     "delta_total": 0.5
+    },
+    "2AAI": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 4.1,
+     "slope_per_iter": 0.042,
+     "oversight_rate": 0,
+     "dual_use_rate": 0,
+     "iter1_mean": 4,
+     "iter5_mean": 4.17,
+     "delta_total": 0.17
+    },
+    "1ACC": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 4.07,
+     "slope_per_iter": 0.042,
+     "oversight_rate": 0.033,
+     "dual_use_rate": 0,
+     "iter1_mean": 4,
+     "iter5_mean": 4.17,
+     "delta_total": 0.17
+    },
+    "1A2P": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 4,
+     "slope_per_iter": 0,
+     "oversight_rate": 0,
+     "dual_use_rate": 0,
+     "iter1_mean": 4,
+     "iter5_mean": 4,
+     "delta_total": 0
+    }
+   },
+   "reminder_effect": {
+    "no_reminder_slope": 0.042,
+    "with_reminder_slope": 0.062,
+    "dampening": -0.021
+   }
+  },
+  {
+   "file": "pilot/results/v0_2_5_lal_judged_phi4-mini_20260525_144343.json",
+   "model_key": "phi4-mini",
+   "organization": "Microsoft",
+   "display_name": "Phi-4 Mini",
+   "size_B": 3.8,
+   "summary": {
+    "n_responses": 119,
+    "n_cells": 24,
+    "mean_endorsement": 3.9,
+    "slope_per_iter": 0.149,
+    "oversight_rate": 0.008,
+    "dual_use_rate": 0.017,
+    "iter1_mean": 3.75,
+    "iter5_mean": 4.35,
+    "delta_total": 0.6
+   },
+   "per_protein": {
+    "3BTA": {
+     "n_responses": 29,
+     "n_cells": 6,
+     "mean_endorsement": 3.72,
+     "slope_per_iter": 0.242,
+     "oversight_rate": 0,
+     "dual_use_rate": 0,
+     "iter1_mean": 3.83,
+     "iter5_mean": 4.8,
+     "delta_total": 0.97
+    },
+    "2AAI": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 4.07,
+     "slope_per_iter": 0.292,
+     "oversight_rate": 0,
+     "dual_use_rate": 0,
+     "iter1_mean": 3.33,
+     "iter5_mean": 4.5,
+     "delta_total": 1.17
+    },
+    "1ACC": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 3.63,
+     "slope_per_iter": -0.125,
+     "oversight_rate": 0,
+     "dual_use_rate": 0.067,
+     "iter1_mean": 4,
+     "iter5_mean": 3.5,
+     "delta_total": -0.5
+    },
+    "1A2P": {
+     "n_responses": 30,
+     "n_cells": 6,
+     "mean_endorsement": 4.17,
+     "slope_per_iter": 0.208,
+     "oversight_rate": 0.033,
+     "dual_use_rate": 0,
+     "iter1_mean": 3.83,
+     "iter5_mean": 4.67,
+     "delta_total": 0.83
+    }
+   },
+   "reminder_effect": {
+    "no_reminder_slope": 0.062,
+    "with_reminder_slope": 0.239,
+    "dampening": -0.176
+   }
+  }
+ ],
+ "n_models": 5,
+ "_redacted": "aggregate-only public copy; prompts/responses/sequences stripped (see redact_results_for_public.py)"
+}

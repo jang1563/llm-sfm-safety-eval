@@ -1,0 +1,9 @@
+-r requirements.txt
+
+accelerate>=0.34
+datasets>=3.0
+huggingface_hub>=0.30
+safetensors>=0.4
+torch>=2.4
+transformers>=4.45
+vllm>=0.6

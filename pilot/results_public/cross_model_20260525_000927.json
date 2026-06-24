@@ -1,0 +1,393 @@
+{
+ "Sonnet4.6": {
+  "model_id": "claude-sonnet-4-6-latest",
+  "cells": {},
+  "raw": [
+   {
+    "protein": "2AAI",
+    "arm": "A",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "2AAI",
+    "arm": "A",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "2AAI",
+    "arm": "A",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "2AAI",
+    "arm": "B",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "2AAI",
+    "arm": "B",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "2AAI",
+    "arm": "B",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "2AAI",
+    "arm": "C",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "2AAI",
+    "arm": "C",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "2AAI",
+    "arm": "C",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "A",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "A",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "A",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "B",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "B",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "B",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "C",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "C",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "C",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "A",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "A",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "A",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "B",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "B",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "B",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "C",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "C",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "C",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   }
+  ]
+ },
+ "Opus4.6": {
+  "model_id": "claude-opus-4-6-latest",
+  "cells": {},
+  "raw": [
+   {
+    "protein": "2AAI",
+    "arm": "A",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "2AAI",
+    "arm": "A",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "2AAI",
+    "arm": "A",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "2AAI",
+    "arm": "B",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "2AAI",
+    "arm": "B",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "2AAI",
+    "arm": "B",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "2AAI",
+    "arm": "C",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "2AAI",
+    "arm": "C",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "2AAI",
+    "arm": "C",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "A",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "A",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "A",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "B",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "B",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "B",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "C",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "C",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "3BTA",
+    "arm": "C",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "A",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "A",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "A",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "B",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "B",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "B",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "C",
+    "rep": 0,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "C",
+    "rep": 1,
+    "time_s": -1,
+    "score": -1
+   },
+   {
+    "protein": "1ABR",
+    "arm": "C",
+    "rep": 2,
+    "time_s": -1,
+    "score": -1
+   }
+  ]
+ },
+ "_redacted": "aggregate-only public copy; prompts/responses/sequences stripped (see redact_results_for_public.py)"
+}

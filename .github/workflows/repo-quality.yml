@@ -1,0 +1,113 @@
+name: repo-quality
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  repo-quality:
+    name: repo-quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install baseline dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Whitespace check
+        run: git diff --check "$(git hash-object -t tree /dev/null)" HEAD
+
+      - name: Secret pattern scan
+        run: bash scripts/secret_scan.sh
+
+      - name: Validate JSON files
+        run: |
+          python - <<'PY'
+          import json
+          import pathlib
+
+          bad = []
+          for path in pathlib.Path(".").rglob("*.json"):
+              if ".git" in path.parts:
+                  continue
+              try:
+                  json.loads(path.read_text())
+              except Exception as exc:
+                  bad.append((str(path), str(exc)))
+
+          if bad:
+              for path, error in bad:
+                  print(f"{path}: {error}")
+              raise SystemExit(1)
+
+          print("JSON_OK")
+          PY
+
+      - name: Compile Python sources
+        run: |
+          python - <<'PY'
+          import pathlib
+
+          bad = []
+          for path in pathlib.Path(".").rglob("*.py"):
+              if ".git" in path.parts or ".venv" in path.parts:
+                  continue
+              try:
+                  compile(path.read_text(), str(path), "exec")
+              except Exception as exc:
+                  bad.append((str(path), str(exc)))
+
+          if bad:
+              for path, error in bad:
+                  print(f"{path}: {error}")
+              raise SystemExit(1)
+
+          print("PY_SYNTAX_OK")
+          PY
+
+      - name: Check shell and SLURM syntax
+        run: |
+          python - <<'PY'
+          import pathlib
+          import subprocess
+
+          bad = []
+          candidates = [
+              path for path in pathlib.Path(".").rglob("*")
+              if path.is_file() and (path.suffix in {".sh", ".slurm"} or path.name.endswith(".bash"))
+          ]
+
+          for path in candidates:
+              if ".git" in path.parts:
+                  continue
+              result = subprocess.run(["bash", "-n", str(path)], text=True, capture_output=True)
+              if result.returncode:
+                  bad.append((str(path), result.stderr.strip()))
+
+          if bad:
+              for path, error in bad:
+                  print(f"{path}: {error}")
+              raise SystemExit(1)
+
+          print("SHELL_SYNTAX_OK")
+          PY
+
+      - name: Non-network pilot smoke checks
+        run: |
+          python pilot/d_spec_config.py
+          python pilot/d_spec_variant_b.py --dry-run

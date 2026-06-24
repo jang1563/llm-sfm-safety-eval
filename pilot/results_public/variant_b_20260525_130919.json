@@ -1,0 +1,16 @@
+{
+ "model": "claude-sonnet-4-6",
+ "temperature": 1.0,
+ "protocol": "Variant B (description-omitted)",
+ "identifier_levels": [
+  "ID-1",
+  "ID-2"
+ ],
+ "timestamp": "2026-05-25T13:09:19.059648",
+ "n_proteins": 4,
+ "n_levels": 2,
+ "n_reps": 50,
+ "total_calls": 0,
+ "results": [],
+ "_redacted": "aggregate-only public copy; prompts/responses/sequences stripped (see redact_results_for_public.py)"
+}

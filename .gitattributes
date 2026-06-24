@@ -1,0 +1,26 @@
+* text=auto eol=lf
+
+# Binary artifacts
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gz binary
+
+# Large analysis outputs are important, but should not dominate GitHub language stats.
+pilot/results/** linguist-generated=true
+paper/backup_*/** linguist-generated=true
+
+# Keep notebooks and structured outputs diffable where present.
+*.json text eol=lf
+*.csv text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.tex text eol=lf
+*.bib text eol=lf
+
+# Markdown legitimately uses trailing double-spaces as hard line breaks and may
+# end with a trailing blank line. Exempt it from git's whitespace-error checks
+# so `git diff --check` (see .github/workflows/repo-quality.yml) does not flag
+# intentional Markdown formatting. Code and scripts are still checked.
+*.md -whitespace

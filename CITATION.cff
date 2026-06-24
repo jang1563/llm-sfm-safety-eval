@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "LLM x SFM Safety Evaluation: refusal calibration on the science-foundation-model interpretation channel"
+type: software
+authors:
+  - family-names: Kim
+    given-names: JangKeun
+    orcid: "https://orcid.org/0000-0002-0520-3703"
+    affiliation: "Mason Lab, Weill Cornell Medicine"
+year: 2026
+repository-code: "https://github.com/jang1563/llm-sfm-safety-eval"
+abstract: >-
+  An evaluation of how deployed Claude models behave on the channel where a
+  language model interprets the output of a specialist science foundation model.
+  Four findings document discontinuous cross-version refusal swings, a calibration
+  gradient from genuine sequence recognition to context-keyword over-refusal, a
+  managed-access (not scale-driven) safety layer, and a keyword-triggered tool-mode
+  surface. Defensive and aggregate-only.
+keywords:
+  - AI safety
+  - biosecurity
+  - science foundation models
+  - refusal calibration
+  - frontier model evaluation
+  - Claude
+license: "Apache-2.0"
