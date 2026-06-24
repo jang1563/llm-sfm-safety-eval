@@ -221,9 +221,18 @@ class D_SpecRunner:
                 if not id_text or id_text.strip() == "":
                     missing.append(f"{pc}/{level}")
         if missing:
-            print(f"ERROR: Missing identifiers for: {missing}")
-            print("Run d_spec_setup_sequences.py first to fetch ID-5 and ID-6 sequences.")
-            sys.exit(1)
+            note = ("Run d_spec_setup_sequences.py first to fetch the ID-5/ID-6 "
+                    "sequences from the public accessions.")
+            if dry_run:
+                # Non-network smoke/dry-run: the public release ships accessions, not
+                # materialized sequences, so ID-5/ID-6 are legitimately absent until
+                # fetched. Skip those levels rather than failing.
+                print(f"NOTE: skipping levels without a materialized identifier: {missing}")
+                print(note)
+            else:
+                print(f"ERROR: Missing identifiers for: {missing}")
+                print(note)
+                sys.exit(1)
 
         total_calls = len(PROTEINS_TO_TEST) * len(IDENTIFIER_LEVELS) * REPLICATES
         start_time = datetime.now()
@@ -244,6 +253,8 @@ class D_SpecRunner:
             print(f"\n{protein.name} ({protein_code}, {protein.uniprot_accession})")
 
             for level in IDENTIFIER_LEVELS:
+                if not (protein.get_identifier(level) or "").strip():
+                    continue  # sequence not materialized (fetch via d_spec_setup_sequences.py)
                 refusal_count = 0
 
                 for rep in range(REPLICATES):
