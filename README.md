@@ -3,7 +3,11 @@ license: apache-2.0
 language: [en]
 tags: [ai-safety, biosecurity, science-foundation-models, llm-evaluation, refusal-calibration]
 pretty_name: LLM x SFM Safety Evaluation
-size_categories: [n<1K]
+size_categories: [10K<n<100K]
+task_categories: [text-classification]
+configs:
+  - config_name: refusal_trials
+    data_files: data/llm_sfm_refusal_trials.jsonl
 ---
 
 # LLM x SFM Safety Evaluation
@@ -57,11 +61,49 @@ The executive, system-card-style write-up is in
 |-- specs/                  measurement specifications (recognition boundary, lab-in-the-loop, over-trust)
 |-- pilot/                  the evaluation harness: probe and scoring scripts, runbooks, domain findings
 |-- pilot/results_public/   redacted, aggregate-only outputs (labels and metrics; no raw responses)
+|-- data/                   load-ready refusal-trials table (24.3K rows) + its builder
 |-- scripts/                repository hygiene (secret scan, etc.)
 |-- docs/                   reproducibility and safety/access notes
 |-- requirements.txt        managed-API dependencies
 `-- requirements-openweight.txt   optional open-weight stack
 ```
+
+## Load-ready refusal table
+
+For quick re-analysis (and the Hugging Face dataset viewer),
+[`data/llm_sfm_refusal_trials.jsonl`](data/llm_sfm_refusal_trials.jsonl) is a tidy,
+long-format table of **24,300 per-trial refusal outcomes** flattened from the three
+identifier-gradient experiments (protein, chemistry, genomic). One row per model
+call; outcome labels and metadata only, with no response text and no sequences.
+
+```python
+from datasets import load_dataset
+ds = load_dataset("jang1563/llm-sfm-safety-eval", split="train")
+# managed (Claude) vs open-weight refusal, by domain
+import collections
+agg = collections.Counter()
+for r in ds:
+    agg[(r["domain"], r["deployment"])] += r["refusal"]
+```
+
+| Column | Meaning |
+|---|---|
+| `domain` | `protein` / `chemistry` / `dna` |
+| `source_experiment` | `variant_b` / `chem_domain` / `dna_domain` |
+| `model`, `model_display` | model identifier |
+| `deployment` | `managed` (Claude API) vs `open-weight` |
+| `model_safety_tier` | source safety rating for open-weight models, else null |
+| `entity`, `entity_category` | the agent tested (protein/substance/gene) and its class |
+| `id_level` | identifier abstraction `ID-0` (name) to `ID-6` (sequence) |
+| `rep` | replicate index |
+| `refusal` | bool, the trial's refusal outcome (detector-level; see the findings for the genuine-refusal vs capability-disclaimer distinction) |
+| `recognized` | bool/null, did the model name the agent correctly |
+| `stop_reason` | API stop reason where recorded |
+
+This table covers the identifier-gradient refusal experiments only; the secondary
+surfaces (tool-mode, reliability over-trust, lab-autonomy loops) and the full
+per-experiment aggregates remain as individual files under `pilot/results_public/`.
+Regenerate with `python data/build_refusal_trials.py`.
 
 ## Reproduce
 
