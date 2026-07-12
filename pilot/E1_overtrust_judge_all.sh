@@ -7,7 +7,7 @@
 set -u
 
 cd "$(dirname "$0")"
-source ~/.api_keys           # sets ANTHROPIC_API_KEY (inherited by & subshells)
+: "${ANTHROPIC_API_KEY:?Set ANTHROPIC_API_KEY in the environment}"
 
 MODELS=(mistral qwen qwen3-4b phi4-mini ministral3-14b \
         gemma4-31b gemma4-moe qwen3-30b-moe qwen3-32b olmo2-32b)

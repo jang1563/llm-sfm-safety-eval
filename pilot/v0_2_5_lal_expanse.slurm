@@ -31,7 +31,7 @@ MODEL_KEY="${1:-qwen}"
 # ---------------------------------------------------------------------------
 # Expanse paths (EDIT for your account)
 # ---------------------------------------------------------------------------
-SCRATCH="/expanse/lustre/scratch/${USER}/temp_project"
+SCRATCH="${SCRATCH:-${HOME}/scratch}"
 PROJECT_DIR="${SCRATCH}/d_spec_experiment"   # reuse same project dir as d_spec
 HF_CACHE="${SCRATCH}/hf_cache"
 ENV_NAME="d_spec_vllm"

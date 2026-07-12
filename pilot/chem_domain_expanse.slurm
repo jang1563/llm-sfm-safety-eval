@@ -40,12 +40,12 @@ set -euo pipefail
 
 MODEL_KEY="${1:-command-a-fp8}"
 REPEATS="${2:-25}"
-SCRATCH="/expanse/lustre/scratch/${USER}/temp_project"
+SCRATCH="${SCRATCH:-${HOME}/scratch}"
 PROJECT_DIR="${PROJECT_DIR:-${SCRATCH}/d_spec_experiment}"
 HF_CACHE="${HF_CACHE:-${SCRATCH}/hf_cache}"
 # Existing env on the PERSISTENT projects filesystem (survives scratch purge).
 # Path-based (outside default envs_dirs) → must activate by full path, not name.
-ENV_PATH="/expanse/lustre/projects/crl195/${USER}/conda_envs/d_spec_vllm_cu124"
+ENV_PATH="${ENV_PATH:-${HOME}/.conda/envs/d_spec_vllm_cu124}"
 CONDA_INIT_A="${HOME}/miniconda3/etc/profile.d/conda.sh"
 CONDA_INIT_B="${HOME}/miniconda3/miniconda3/etc/profile.d/conda.sh"
 
@@ -131,13 +131,10 @@ export HF_HOME="${HF_CACHE}"
 export TRANSFORMERS_CACHE="${HF_CACHE}"
 export HF_HUB_CACHE="${HF_CACHE}"
 
-if [ -z "${HF_TOKEN:-}" ] && [ -f "${HOME}/.cache/huggingface/token" ]; then
-    export HF_TOKEN="$(cat "${HOME}/.cache/huggingface/token")"
-fi
 if [ -n "${HF_TOKEN:-}" ]; then
-    echo "HF_TOKEN: ...${HF_TOKEN: -4} (required for gated CohereLabs repo)"
+    echo "HF_TOKEN is set (required for gated CohereLabs repo)"
 else
-    echo "ERROR: HF_TOKEN not set and no token file — gated command-a download will 403."
+    echo "ERROR: HF_TOKEN not set — gated command-a download will fail."
     exit 1
 fi
 echo

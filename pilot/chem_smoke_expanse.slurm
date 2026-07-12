@@ -23,10 +23,10 @@
 
 set -euo pipefail
 
-SCRATCH="/expanse/lustre/scratch/${USER}/temp_project"
-PROJECT_DIR="${SCRATCH}/d_spec_experiment"
-HF_CACHE="${SCRATCH}/hf_cache"
-ENV_PATH="/expanse/lustre/projects/crl195/${USER}/conda_envs/d_spec_vllm_cu124"
+SCRATCH="${SCRATCH:-${HOME}/scratch}"
+PROJECT_DIR="${PROJECT_DIR:-${SCRATCH}/d_spec_experiment}"
+HF_CACHE="${HF_CACHE:-${SCRATCH}/hf_cache}"
+ENV_PATH="${ENV_PATH:-${HOME}/.conda/envs/d_spec_vllm_cu124}"
 
 mkdir -p logs
 
@@ -52,8 +52,9 @@ export HF_HOME="${HF_CACHE}"
 export TRANSFORMERS_CACHE="${HF_CACHE}"
 export HF_HUB_CACHE="${HF_CACHE}"
 mkdir -p "${HF_CACHE}"
-if [ -z "${HF_TOKEN:-}" ] && [ -f "${HOME}/.cache/huggingface/token" ]; then
-    export HF_TOKEN="$(cat "${HOME}/.cache/huggingface/token")"
+if [ -z "${HF_TOKEN:-}" ]; then
+    echo "ERROR: HF_TOKEN not set"
+    exit 1
 fi
 
 echo "=============================================="

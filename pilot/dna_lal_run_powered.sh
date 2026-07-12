@@ -29,10 +29,6 @@ mkdir -p "$RESULTS_DIR" "$LOGS_DIR"
 rm -f "$DONE"
 
 if [ -z "${ANTHROPIC_API_KEY:-}" ]; then
-    # shellcheck disable=SC1090
-    source "$HOME/.api_keys" 2>/dev/null || source "$HOME/.zshrc" 2>/dev/null
-fi
-if [ -z "${ANTHROPIC_API_KEY:-}" ]; then
     echo "EXIT=1 (no ANTHROPIC_API_KEY)" > "$DONE"; exit 1
 fi
 

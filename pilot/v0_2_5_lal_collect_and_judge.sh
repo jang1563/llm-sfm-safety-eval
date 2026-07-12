@@ -1,19 +1,18 @@
 #!/usr/bin/env bash
-# Pull v0.2.5 LAL vLLM results from Cayuga and run judge on any not yet judged.
+# Pull v0.2.5 LAL vLLM results from a remote cluster and judge new files.
 #
 # Idempotent: run as often as you like. Skips already-judged inputs.
 #
 # Usage:
-#   ./v0_2_5_lal_collect_and_judge.sh                    # collect + judge all
+#   REMOTE_HOST=... REMOTE_RESULTS_DIR=... ./v0_2_5_lal_collect_and_judge.sh
 #   ./v0_2_5_lal_collect_and_judge.sh --no-judge         # collect only
 #   ./v0_2_5_lal_collect_and_judge.sh --no-rsync         # judge already-pulled files only
 
 set -uo pipefail
 
 PROJECT_ROOT="${PROJECT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
-CAYUGA_HOST="${CAYUGA_HOST:-cayuga-login1}"
-CAYUGA_USER="${CAYUGA_USER:-$USER}"
-CAYUGA_DIR="${CAYUGA_DIR:-/athena/masonlab/scratch/users/${CAYUGA_USER}/d_spec_experiment/results}"
+REMOTE_HOST="${REMOTE_HOST:-}"
+REMOTE_RESULTS_DIR="${REMOTE_RESULTS_DIR:-}"
 LOCAL_DIR="${LOCAL_DIR:-${PROJECT_ROOT}/pilot/results}"
 SSH_CONTROL_DIR="${SSH_CONTROL_DIR:-${HOME}/.ssh/sockets}"
 SSH_OPTS="${SSH_OPTS:--o ControlPath=${SSH_CONTROL_DIR}/%r@%h-%p}"
@@ -33,9 +32,13 @@ done
 cd "$LOCAL_DIR"
 
 if [ "$DO_RSYNC" = "1" ]; then
-    echo "=== Pulling v0_2_5_lal_vllm_*.json from $CAYUGA_HOST ==="
+    if [ -z "$REMOTE_HOST" ] || [ -z "$REMOTE_RESULTS_DIR" ]; then
+        echo "ERROR: set REMOTE_HOST and REMOTE_RESULTS_DIR, or use --no-rsync"
+        exit 1
+    fi
+    echo "=== Pulling v0_2_5_lal_vllm_*.json from $REMOTE_HOST ==="
     # Enumerate via ssh, then rsync each file individually (rsync globs are awkward)
-    files=$(ssh $SSH_OPTS "$CAYUGA_HOST" "ls $CAYUGA_DIR/v0_2_5_lal_vllm_*.json 2>/dev/null")
+    files=$(ssh $SSH_OPTS "$REMOTE_HOST" "ls $REMOTE_RESULTS_DIR/v0_2_5_lal_vllm_*.json 2>/dev/null")
     if [ -z "$files" ]; then
         echo "  (no vLLM files on remote yet)"
     else
@@ -45,7 +48,7 @@ if [ "$DO_RSYNC" = "1" ]; then
                 echo "  EXISTS $(basename "$remote_f")"
             else
                 echo "  PULL   $(basename "$remote_f")"
-                scp -q $SSH_OPTS "${CAYUGA_HOST}:${remote_f}" "${local_f}"
+                scp -q $SSH_OPTS "${REMOTE_HOST}:${remote_f}" "${local_f}"
             fi
         done
     fi
@@ -57,15 +60,10 @@ if [ "$DO_JUDGE" = "0" ]; then
     exit 0
 fi
 
-api_key="${ANTHROPIC_API_KEY:-}"
-if [ -z "$api_key" ]; then
-    api_key=$(grep '^export ANTHROPIC_API_KEY' ~/.zshrc 2>/dev/null | sed 's/.*="\(.*\)".*/\1/')
-fi
-if [ -z "$api_key" ]; then
-    echo "ERROR: ANTHROPIC_API_KEY not set and not found in ~/.zshrc"
+if [ -z "${ANTHROPIC_API_KEY:-}" ]; then
+    echo "ERROR: ANTHROPIC_API_KEY not set"
     exit 1
 fi
-export ANTHROPIC_API_KEY="$api_key"
 
 JUDGE_SCRIPT="$LOCAL_DIR/../v0_2_5_lal_judge.py"
 

@@ -15,7 +15,7 @@
 set -euo pipefail
 
 MODEL_KEY="${1:-gemma4-31b}"
-SCRATCH="${SCRATCH:-/athena/masonlab/scratch/users/${USER}}"
+SCRATCH="${SCRATCH:-${HOME}/scratch}"
 PROJECT_DIR="${PROJECT_DIR:-${SCRATCH}/d_spec_experiment}"
 HF_CACHE="${HF_CACHE:-${SCRATCH}/hf_cache}"
 ENV_NAME="d_spec_vllm"

@@ -1,9 +1,9 @@
 #!/bin/bash
-# run_on_phobos.sh — Run D spec Variant B on Cayuga Phobos node
+# Portable CPU-node runner for D spec Variant B
 #
 # Usage:
-#   1. Copy project to Phobos scratch
-#   2. SSH to Phobos
+#   1. Copy the project to cluster scratch
+#   2. Connect to a CPU or login node with outbound HTTPS
 #   3. Run this script in a tmux/screen session
 #
 # Requirements: outbound HTTPS to api.anthropic.com
@@ -13,7 +13,7 @@ set -euo pipefail
 # ============================================================================
 # Configuration
 # ============================================================================
-SCRATCH="${SCRATCH:-/athena/masonlab/scratch/users/${USER}}"
+SCRATCH="${SCRATCH:-${HOME}/scratch}"
 PROJECT_DIR="${PROJECT_DIR:-${SCRATCH}/d_spec_experiment}"
 CONDA_INIT="${HOME}/miniconda3/miniconda3/etc/profile.d/conda.sh"
 ENV_NAME="d_spec_env"
@@ -53,12 +53,7 @@ if [ -z "${ANTHROPIC_API_KEY:-}" ]; then
     echo ""
     echo "ERROR: ANTHROPIC_API_KEY not set."
     echo ""
-    echo "Option A — export directly:"
-    echo "  export ANTHROPIC_API_KEY='<your-anthropic-api-key>'"
-    echo ""
-    echo "Option B — create a .env file:"
-    echo "  echo 'export ANTHROPIC_API_KEY=<your-anthropic-api-key>' > ${PROJECT_DIR}/.env"
-    echo "  source ${PROJECT_DIR}/.env"
+    echo '  export ANTHROPIC_API_KEY="..."'
     echo ""
     exit 1
 fi
@@ -75,10 +70,8 @@ if curl -s --max-time 10 https://api.anthropic.com/ > /dev/null 2>&1; then
 else
     echo "✗ api.anthropic.com NOT reachable"
     echo ""
-    echo "Phobos may not have outbound internet. Try:"
-    echo "  1. Login node instead (cayuga-login1)"
-    echo "  2. Or check proxy: echo \$https_proxy"
-    echo "  3. Or ask sysadmin about firewall rules"
+    echo "This node may not have outbound internet. Try a permitted login/CPU node,"
+    echo "check the configured HTTPS proxy, or contact the site administrator."
     exit 1
 fi
 

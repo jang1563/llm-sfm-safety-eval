@@ -22,10 +22,9 @@
 #   3 phi4-mini       Phi-4 mini 3.8B   (moderate, tiny)
 #   4 ministral3-14b  Ministral 3 14B   (minimal safety, newer)
 #
-# Usage (corrected SLURM binary — /usr/bin/sbatch v22.05.2 is BROKEN):
-#   SB=/opt/ohpc/pub/software/slurm/24.05.2/bin/sbatch
-#   $SB --array=0-4 E1_vllm_cayuga.slurm        # sweep all 5 small models
-#   $SB E1_vllm_cayuga.slurm qwen               # single model (positional override)
+# Usage:
+#   sbatch --array=0-4 E1_vllm_cayuga.slurm     # sweep all 5 small models
+#   sbatch E1_vllm_cayuga.slurm qwen            # single model (positional override)
 #
 # Large models (gemma4-31b, gemma4-moe, qwen3-30b-moe, qwen3-32b, olmo2-32b):
 #   use E1_vllm_cayuga_a100.slurm (single A100 80GB).
@@ -43,7 +42,7 @@ else
     MODEL_KEY="${SMALL_PANEL[0]}"
 fi
 
-SCRATCH="${SCRATCH:-/athena/masonlab/scratch/users/${USER}}"
+SCRATCH="${SCRATCH:-${HOME}/scratch}"
 # E1 files are staged alongside the proven d_spec_vllm.py / d_spec_config.py.
 PROJECT_DIR="${PROJECT_DIR:-${SCRATCH}/d_spec_experiment}"
 HF_CACHE="${HF_CACHE:-${SCRATCH}/hf_cache}"
@@ -92,7 +91,7 @@ export TRANSFORMERS_CACHE="${HF_CACHE}"
 export HF_HUB_CACHE="${HF_CACHE}"
 
 if [ -n "${HF_TOKEN:-}" ]; then
-    echo "HF_TOKEN: ...${HF_TOKEN: -4}"
+    echo "HF_TOKEN is set"
 else
     echo "HF_TOKEN: not set (OK for Mistral, Qwen, Phi; Gemma/OLMo may need it)"
 fi

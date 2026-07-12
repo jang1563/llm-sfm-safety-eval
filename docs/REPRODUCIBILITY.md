@@ -55,7 +55,7 @@ Open-weight paths may require:
 export HF_TOKEN="..."
 ```
 
-Use the relevant `pilot/*vllm*.py`, `pilot/*hf*.py`, and cluster `.slurm` helpers. These runs are environment-dependent and should record model name, hardware, backend, and command line in the result metadata or handoff note.
+Use the relevant `pilot/*vllm*.py`, `pilot/*hf*.py`, and cluster `.slurm` helpers. These runs are environment-dependent and should record model name, hardware, backend, and command line in the result metadata or provenance record.
 
 ## Result Provenance
 

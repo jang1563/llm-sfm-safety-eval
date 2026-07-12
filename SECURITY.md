@@ -2,9 +2,11 @@
 
 ## Repository status
 
-This repository contains defensive AI safety research materials: evaluation
-design, aggregate pilot outputs, and scripts that call external model APIs. It is
-measurement and analysis material, not operational content.
+This public repository contains the reviewed release subset of defensive AI
+safety research materials: evaluation design, aggregate pilot outputs, and
+scripts that call external model APIs. It is measurement and analysis material,
+not operational content. Raw prompts, raw responses, materialized hazardous
+sequences, and private infrastructure records remain outside the public tree.
 
 ## Secrets
 
