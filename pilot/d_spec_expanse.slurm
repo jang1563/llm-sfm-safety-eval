@@ -40,7 +40,7 @@ MODEL_KEY="${1:-qwen}"
 # ---------------------------------------------------------------------------
 # Expanse-specific paths (EDIT THESE FOR YOUR ACCOUNT)
 # ---------------------------------------------------------------------------
-SCRATCH="/expanse/lustre/scratch/${USER}/temp_project"
+SCRATCH="${SCRATCH:-${HOME}/scratch}"
 PROJECT_DIR="${SCRATCH}/d_spec_experiment"
 HF_CACHE="${SCRATCH}/hf_cache"
 ENV_NAME="d_spec_vllm"
@@ -100,7 +100,7 @@ export TRANSFORMERS_CACHE="${HF_CACHE}"
 export HF_HUB_CACHE="${HF_CACHE}"
 
 if [ -n "${HF_TOKEN:-}" ]; then
-    echo "HF_TOKEN: ...${HF_TOKEN: -4}"
+    echo "HF_TOKEN is set"
 else
     echo "HF_TOKEN: not set (OK for non-gated models)"
 fi

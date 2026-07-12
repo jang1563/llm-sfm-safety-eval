@@ -7,7 +7,9 @@ GPT-4o using the identical rubric, and computes agreement with the
 existing Haiku-4.5 scores.
 
 Usage:
-    source ~/.zshrc && python3 v0_2_5_multijudge.py
+    export ANTHROPIC_API_KEY="..."
+    export OPENAI_API_KEY="..."
+    python3 v0_2_5_multijudge.py
 """
 
 import json, os, sys, time, re, random, argparse

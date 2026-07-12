@@ -27,11 +27,11 @@ gate can re-classify borderline cases without re-querying.
 
 Models (§10): claude-sonnet-4-20250514, claude-sonnet-4-6, claude-opus-4-6,
               claude-opus-4-7, claude-opus-4-8. T=1.0.
-API key: source ~/.api_keys   (sets ANTHROPIC_API_KEY)
+API key: set ANTHROPIC_API_KEY in the environment.
 
 Usage:
-    source ~/.api_keys && python3 E1_overtrust_smoke.py --dry-run   # verify prompts
-    source ~/.api_keys && python3 E1_overtrust_smoke.py             # live 100-call gate
+    python3 E1_overtrust_smoke.py --dry-run   # verify prompts
+    python3 E1_overtrust_smoke.py             # live 100-call gate
 """
 
 import argparse
@@ -181,7 +181,7 @@ class SmokeRunner:
             except Exception as e:
                 print(f"  SKIP {m:<28} -> UNREACHABLE: {type(e).__name__}: {str(e)[:80]}")
         if not reachable:
-            print("ERROR: no models reachable. Check ANTHROPIC_API_KEY (source ~/.api_keys).")
+            print("ERROR: no models reachable. Check ANTHROPIC_API_KEY.")
             sys.exit(1)
         return reachable
 

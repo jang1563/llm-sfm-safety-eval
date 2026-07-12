@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # _judge_lal_track2.sh — detached judge pass for the Track 2 powered merged file.
-# Mirrors _launch_lal_track2.sh: sources the key (never echoes it), caffeinate,
-# logs to a file, drops a sentinel. Run detached so it survives turn boundaries:
+# Mirrors _launch_lal_track2.sh: requires the key in the calling environment,
+# uses caffeinate when available, logs to a file, and drops a sentinel:
 #   nohup bash _judge_lal_track2.sh >/dev/null 2>&1 &
 # Scores 1200 cells x 5 iters = 6000 judge calls (no resume; single process).
 set -uo pipefail
@@ -18,8 +18,9 @@ rm -f "$DONE"
 MERGED="$(ls -t "${RESULTS_DIR}"/v0_2_6_lal_subject_powered_merged_*.json 2>/dev/null | head -1)"
 if [ -z "$MERGED" ]; then echo "EXIT=2 (no merged file)" > "$DONE"; exit 2; fi
 
-# shellcheck disable=SC1090
-source "$HOME/.api_keys" 2>/dev/null
+if [ -z "${ANTHROPIC_API_KEY:-}" ]; then
+    echo "EXIT=1 (no ANTHROPIC_API_KEY)" > "$DONE"; exit 1
+fi
 
 cd "$PILOT_DIR" || { echo "EXIT=127 (cd failed)" > "$DONE"; exit 127; }
 

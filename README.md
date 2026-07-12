@@ -120,12 +120,14 @@ read and re-analyzed without any API access. See
 
 ## Scope and safety
 
-This is a defensive measurement archive. In scope: safety-evaluation design,
-classifier-coverage analysis, and aggregate refusal/response analysis. Out of
-scope, and not present: wet-lab protocols, synthesis routes, operational
-biological guidance, capability-uplift content, and any materialized hazardous
-sequences. Sequence panels are reconstructed from public database accessions by
-builder scripts; resolved sequences are not shipped. See
+This is the reviewed public subset prepared for disclosure after 30 June 2026.
+In scope: safety-evaluation design, classifier-coverage analysis, executable
+harnesses, public scientific identifiers, and aggregate refusal/response labels.
+Out of scope, and not present: raw prompts or model responses, wet-lab protocols,
+synthesis routes, operational biological guidance, capability-uplift content,
+private infrastructure records, and any materialized hazardous sequences.
+Sequence panels are reconstructed from public database accessions by builder
+scripts; resolved sequences are not shipped. See
 [`docs/SAFETY_AND_ACCESS.md`](docs/SAFETY_AND_ACCESS.md) and
 [`SECURITY.md`](SECURITY.md).
 

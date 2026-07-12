@@ -3,7 +3,8 @@
 
 Validates the entire fp8 inference pipeline WITHOUT the 222GB command-a download:
   [1] torch can actually see the H100 (cu124 runtime via minor-version compat on
-      the node's CUDA-12.0 driver) -> the exact failure mode that killed job 49907742.
+      the node's CUDA-12.0 driver) -> the exact failure mode observed in the
+      original cluster run.
   [2] this vLLM build registers Cohere2ForCausalLM (command-a-03-2025's arch).
   [3] command-a's real config.json arch string matches (gated fetch, ~KB).
   [4] vLLM can init CUDA + run the fp8 online-quant path + generate (tiny ungated model).

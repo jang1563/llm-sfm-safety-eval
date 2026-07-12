@@ -522,7 +522,7 @@ v0.1 (channel asymmetry, chat mode)
 | # | Decision | Rationale |
 |---|----------|-----------|
 | 1 | Conceptual spec, not runnable protocol | Physical infrastructure required for full evaluation |
-| 2 | LAL tiers modeled on ASL | Familiar framework for Anthropic audience |
+| 2 | LAL tiers modeled on ASL | Familiar deployment-tier safety framework |
 | 3 | 4 measurement surfaces | Covers design, ordering, oversight, and cumulative risk |
 | 4 | Simulated-loop partial evaluation | Bridges to v0.1/v0.2 infrastructure |
 | 5 | Positioned relative to Safe-SDL/LABSHIELD | Honest about existing work; claims specific gap |

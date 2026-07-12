@@ -32,7 +32,7 @@ Key hypotheses (cross-domain):
        vs protein-level recognition — is the classifier protein-centric?
 
 Usage:
-    source ~/.api_keys              # exports ANTHROPIC_API_KEY (do not echo the key)
+    export ANTHROPIC_API_KEY="..."
     python3 pilot/dna_domain_probe.py [--repeats 25] [--pilot] [--model claude-sonnet-4-6]
 """
 
@@ -190,7 +190,7 @@ def main():
 
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
-        sys.exit("ANTHROPIC_API_KEY not set (run: source ~/.api_keys)")
+        sys.exit("ANTHROPIC_API_KEY not set")
     client = anthropic.Anthropic(api_key=api_key)
 
     total = len(gene_keys) * len(ID_LEVELS) * reps

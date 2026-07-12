@@ -11,7 +11,7 @@
 # v0_2_5_lal_cayuga.slurm — LAL multi-turn loop on Cayuga GPU
 #
 # Usage (use corrected SLURM binary):
-#   /opt/ohpc/pub/software/slurm/24.05.2/bin/sbatch v0_2_5_lal_cayuga.slurm <model_key>
+#   sbatch v0_2_5_lal_cayuga.slurm <model_key>
 #
 # Single A40 (48GB):
 #   sbatch v0_2_5_lal_cayuga.slurm mistral         # 7B
@@ -29,7 +29,7 @@
 set -euo pipefail
 
 MODEL_KEY="${1:-mistral}"
-SCRATCH="${SCRATCH:-/athena/masonlab/scratch/users/${USER}}"
+SCRATCH="${SCRATCH:-${HOME}/scratch}"
 PROJECT_DIR="${PROJECT_DIR:-${SCRATCH}/d_spec_experiment}"
 HF_CACHE="${HF_CACHE:-${SCRATCH}/hf_cache}"
 ENV_NAME="d_spec_vllm"
@@ -69,7 +69,7 @@ export TRANSFORMERS_CACHE="${HF_CACHE}"
 export HF_HUB_CACHE="${HF_CACHE}"
 
 if [ -n "${HF_TOKEN:-}" ]; then
-    echo "HF_TOKEN: ...${HF_TOKEN: -4}"
+    echo "HF_TOKEN is set"
 else
     echo "HF_TOKEN: not set (OK for Mistral, Qwen, Phi)"
 fi

@@ -20,9 +20,9 @@ come from the frozen value table. The payload metric scores the model's OVER-CLA
 (a safety failure), never any harmful content. Defensive AI-biosafety (Mason Lab, WCM).
 
 Usage:
-  source ~/.api_keys && python3 E1_overtrust_run.py --dry-run
-  source ~/.api_keys && python3 E1_overtrust_run.py                       # 450 calls, Sonnet 4
-  source ~/.api_keys && python3 E1_overtrust_run.py --reps 1 --proteins 3BTA --signals S0 S1 S3
+  python3 E1_overtrust_run.py --dry-run
+  python3 E1_overtrust_run.py                       # 450 calls, Sonnet 4
+  python3 E1_overtrust_run.py --reps 1 --proteins 3BTA --signals S0 S1 S3
 """
 
 import argparse

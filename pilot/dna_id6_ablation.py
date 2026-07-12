@@ -29,7 +29,7 @@ Read-out (genuine system refusal, stop_reason=='refusal'):
 identical infra to dna_domain_probe.py (survives harness turn-boundary kills).
 
 Usage:
-    source ~/.api_keys
+    export ANTHROPIC_API_KEY="..."
     nohup python3 -u pilot/dna_id6_ablation.py --repeats 25 > /tmp/dna_abl.log 2>&1 < /dev/null & disown
 """
 
@@ -156,7 +156,7 @@ def main():
 
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
-        sys.exit("ANTHROPIC_API_KEY not set (run: source ~/.api_keys)")
+        sys.exit("ANTHROPIC_API_KEY not set")
     client = anthropic.Anthropic(api_key=api_key)
 
     total = len(gene_keys) * len(VARIANT_ORDER) * reps

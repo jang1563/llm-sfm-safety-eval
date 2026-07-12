@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # v0_2_6_lal_run_powered.sh — Track 2 powered LAL run (15 pairs / 30 proteins)
 # ============================================================================
-# End-to-end orchestration of the v0.2.6 LAL S1'/S4' powered run on Cayuga:
+# End-to-end orchestration of the v0.2.6 LAL S1'/S4' powered run:
 #   1. launch N parallel API shards of v0_2_6_lal_pilot.py
 #   2. merge shard checkpoints                 (v0_2_6_merge_shards.py)
 #   3. judge the merged subject file           (v0_2_6_lal_judge.py)
 #   4. run the four analyses (S1b primary, escalation, S4' CCS, S1' secondary)
 #
-# Run inside tmux/screen on a CPU node with outbound HTTPS to api.anthropic.com
-# (Phobos/login). It is API-bound, NOT GPU — no SLURM allocation needed.
+# Run inside tmux/screen on a CPU node with outbound HTTPS to api.anthropic.com.
+# It is API-bound, NOT GPU — no SLURM allocation needed.
 #
 #   tmux new -s lal
 #   export ANTHROPIC_API_KEY=...        # required
@@ -22,7 +22,7 @@
 set -uo pipefail
 
 # ---- Config (override via env) ---------------------------------------------
-SCRATCH="${SCRATCH:-/athena/masonlab/scratch/users/${USER}}"
+SCRATCH="${SCRATCH:-${HOME}/scratch}"
 PROJECT_DIR="${PROJECT_DIR:-${SCRATCH}/Science_FM_Safety_LAL}"
 PILOT_DIR="${PILOT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)}"
 RESULTS_DIR="${RESULTS_DIR:-${PILOT_DIR}/results}"

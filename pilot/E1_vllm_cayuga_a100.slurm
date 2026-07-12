@@ -23,10 +23,9 @@
 #   3 qwen3-32b       Qwen 3 32B dense  (moderate, large)
 #   4 olmo2-32b       OLMo-2 32B        (safety-tuned, fully open)
 #
-# Usage (corrected SLURM binary — /usr/bin/sbatch v22.05.2 is BROKEN):
-#   SB=/opt/ohpc/pub/software/slurm/24.05.2/bin/sbatch
-#   $SB --array=0-4 E1_vllm_cayuga_a100.slurm   # sweep all 5 large models
-#   $SB E1_vllm_cayuga_a100.slurm qwen3-32b     # single model (positional override)
+# Usage:
+#   sbatch --array=0-4 E1_vllm_cayuga_a100.slurm  # sweep all 5 large models
+#   sbatch E1_vllm_cayuga_a100.slurm qwen3-32b    # single model (positional override)
 
 set -euo pipefail
 
@@ -41,7 +40,7 @@ else
     MODEL_KEY="${LARGE_PANEL[0]}"
 fi
 
-SCRATCH="${SCRATCH:-/athena/masonlab/scratch/users/${USER}}"
+SCRATCH="${SCRATCH:-${HOME}/scratch}"
 # E1 files are staged alongside the proven d_spec_vllm.py / d_spec_config.py.
 PROJECT_DIR="${PROJECT_DIR:-${SCRATCH}/d_spec_experiment}"
 HF_CACHE="${HF_CACHE:-${SCRATCH}/hf_cache}"
@@ -74,7 +73,7 @@ export TRANSFORMERS_CACHE="${HF_CACHE}"
 export HF_HUB_CACHE="${HF_CACHE}"
 
 if [ -n "${HF_TOKEN:-}" ]; then
-    echo "HF_TOKEN: ...${HF_TOKEN: -4}"
+    echo "HF_TOKEN is set"
 else
     echo "HF_TOKEN: not set (Gemma + OLMo gated repos may need it)"
 fi

@@ -49,7 +49,7 @@ Detach-safe, per-call JSONL checkpoint+resume (survives harness turn-boundary ki
 identical infra to dna_id6_ablation.py / dna_domain_probe.py.
 
 Usage:
-    source ~/.api_keys
+    export ANTHROPIC_API_KEY="..."
     python3 pilot/dna_a2_ablation.py --pilot                 # 2-rep smoke (144 calls)
     nohup python3 -u pilot/dna_a2_ablation.py --repeats 25 \
         > /tmp/dna_a2.log 2>&1 < /dev/null & disown          # full (1,800 calls)
@@ -201,7 +201,7 @@ def main():
 
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
-        sys.exit("ANTHROPIC_API_KEY not set (run: source ~/.api_keys)")
+        sys.exit("ANTHROPIC_API_KEY not set")
     client = anthropic.Anthropic(api_key=api_key)
 
     total = len(gene_keys) * len(CELLS) * reps

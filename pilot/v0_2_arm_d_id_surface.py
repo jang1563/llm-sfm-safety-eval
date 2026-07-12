@@ -23,7 +23,7 @@ Subject model: env SURFACE_MODEL (default claude-sonnet-4-20250514).
 Judge model: claude-sonnet-4-20250514 (T=0.0). (Sonnet 4.6 refuses to judge bio.)
 
 Usage:
-    source ~/.api_keys
+    export ANTHROPIC_API_KEY="..."
     SURFACE_MODEL=claude-sonnet-4-20250514 python3 v0_2_arm_d_id_surface.py --smoke
     SURFACE_MODEL=claude-sonnet-4-20250514 python3 v0_2_arm_d_id_surface.py
     SURFACE_MODEL=claude-sonnet-4-6        python3 v0_2_arm_d_id_surface.py

@@ -168,7 +168,9 @@ This experiment measures **where LLM safety classifiers stop recognizing dangero
 - ✓ Characterizing coverage gaps (same as SafeProtein, BrowserART)
 - ✓ Evaluating safety training reach across notation forms
 
-This is the same type of work Anthropic's Safeguards team conducts-identifying where safety measures need strengthening.
+This follows the general practice of frontier-model safety evaluation: identify
+where safety measures need strengthening without publishing operational harmful
+content.
 
 ---
 
@@ -183,14 +185,14 @@ If you hit rate limits:
 
 ### API Key Issues
 
-Ensure `ANTHROPIC_API_KEY` is set:
+Confirm that `ANTHROPIC_API_KEY` is set without printing its value:
 ```bash
-echo $ANTHROPIC_API_KEY
+test -n "${ANTHROPIC_API_KEY:-}" && echo "ANTHROPIC_API_KEY is set"
 ```
 
 If not set:
 ```bash
-export ANTHROPIC_API_KEY="sk-ant-..."
+export ANTHROPIC_API_KEY="..."
 ```
 
 ### Missing Results Directory
@@ -207,7 +209,7 @@ chmod 755 results
 
 1. **Analysis**: Run `d_spec_analyze.py` to compare Variant A & B
 2. **Intent variation** (optional): Re-run at different intent levels (L3 vs L5)
-3. **Mechanistic follow-up** (Phase 2 - Anthropic internal):
+3. **Mechanistic follow-up** (Phase 2 - provider-authorized or open-weight):
    - SAE feature activation at each ID level
    - Concept cone projection for safety representation
 

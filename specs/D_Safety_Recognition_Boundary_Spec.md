@@ -379,10 +379,11 @@ measurement layer.
 
 ---
 
-## 5. Phase 2: Mechanistic Measurement (Anthropic Internal Access)
+## 5. Phase 2: Mechanistic Measurement (Privileged or Open-Weight Access)
 
-This phase is conditional on internal model access and is designed as
-a natural follow-on for execution within Anthropic.
+This phase is conditional on access to model-internal representations, either
+through provider-authorized tooling or a reproducible open-weight model. It is a
+possible follow-on, not part of the public behavioral evaluation reported here.
 
 ### 5.1 What Phase 1 Cannot Answer
 
@@ -405,8 +406,8 @@ These have different remediation strategies:
 
 ### 5.2 SAE Feature Analysis
 
-Using Anthropic's production SAE tooling (comparable to Claude Sonnet
-4.5 system card methodology):
+Using provider-authorized or open-weight SAE tooling comparable to published
+system-card methodology:
 
 1. Identify SAE features that activate on ID-0-ID-2 queries for each protein
    (the "recognized as dangerous" zone)
@@ -423,7 +424,7 @@ supported (the concept is recognized but doesn't trigger behavior).
 ### 5.3 Concept Cone Mapping
 
 Using the Concept Cones methodology (Wollschlager et al., ICML 2025)
-adapted for Claude's architecture:
+adapted to the model under study:
 
 - Compute concept cones for dangerous protein concepts in natural-language
   form (L0-L2)
@@ -437,15 +438,15 @@ cone center (inside/outside the cone)."
 ### ⚠ STILL UNCERTAIN: Phase 2 Tooling
 
 The concept cones paper (2502.17420) used open-weight models (Gemma 2,
-Qwen 2.5, Llama 3). Applying it to Claude requires Anthropic's internal
-attribution graph / SAE infrastructure. The specific methodology would
-need adaptation - it is not a direct port. I do not know the exact form
-of Anthropic's internal interpretability tooling beyond what is published
-(circuit-tracer, SAE features on Sonnet/Haiku, NLAs on Opus 4.6).
+Qwen 2.5, Llama 3). Applying it to a closed model requires
+provider-authorized representation or attribution access; a public API does not
+expose the required activations. The methodology would therefore need either an
+authorized provider-side implementation or a separately documented
+open-weight replication.
 
-**The design principle is correct; the implementation details require
-internal knowledge to specify precisely.** This is flagged honestly -
-Phase 2 is a direction, not a complete protocol.
+**The design principle is testable, but the implementation is access- and
+architecture-dependent.** Phase 2 is a research direction, not a complete
+protocol.
 
 ---
 
@@ -543,9 +544,8 @@ but recognition-failure effects. Distinguishing these requires D.
   per-model. Not enough for strong distributional claims.
 - **FSPE/FSI prediction is speculative.** No theoretical basis confirmed.
   Requires empirical testing.
-- **Phase 2 tooling is underdetermined.** Concept cones and SAE analysis
-  at Anthropic require internal access and adaptation of external
-  methodologies to Claude's specific architecture.
+- **Phase 2 tooling is underdetermined.** Concept cones and SAE analysis require
+  model-internal access and adaptation to the architecture under study.
 - **Identifier gradient ordering is uncertain at ID-3-ID-4.** The experiment
   measures rather than assumes the order.
 - **No logprobs from Claude.** Refusal must be scored from full output,
@@ -564,7 +564,7 @@ but recognition-failure effects. Distinguishing these requires D.
 | 5 | Dual models | Open-weight enables logprob; Claude is the primary target |
 | 6 | ID-3-ID-4 ordering treated as empirical | Database accession recognizability is model-dependent, unknown a priori |
 | 7 | FSPE/FSI labeled speculative | No established cross-model signal; hypothesis to test |
-| 8 | Phase 2 direction-level, not full protocol | Internal tooling details require internal access |
+| 8 | Phase 2 direction-level, not full protocol | Mechanistic tooling differs by model and access level |
 | 9 | v0.1 protein panel reused | Infrastructure consistency; PRT-tier proteins most relevant |
 | 10 | Intent-L3+intent-L5 only | Cost-efficiency; dual-use region is the safety-relevant zone |
 | 11 | Variant B (description-omitted) added for ID-4-ID-6 | Isolates identifier recognition from description-based leakage |
@@ -582,6 +582,6 @@ Revision header: **Revised 2026-05-23 (post-creation review: 5 issues fixed - D-
 | ID-3-ID-4 recognition ordering | Training data composition unknown | Empirical: pilot 10 queries per level per protein |
 | Whether 4PL is appropriate | Safety refusal ≠ enzyme kinetics | Empirical: fit and check residuals; fallback to non-parametric |
 | FSPE/FSI -> STD correlation | No causal pathway established | Compute Spearman correlation on Phase 1 results |
-| Phase 2 tooling for Claude | Internal architecture not publicly specified | Post-hire; adapt published Anthropic methodology |
+| Phase 2 tooling for closed models | Internal architecture not publicly specified | Use provider-authorized tooling or reproduce on an open-weight model with published methods |
 | Whether STD < ID-6 holds universally | Unknown - could be that all proteins fail at ID-3 | Phase 1 primary result |
 | Variant B STD vs Variant A STD gap | Magnitude of description leakage unknown | Run Variant B at ID-4-ID-6 and compare to Variant A at same levels |

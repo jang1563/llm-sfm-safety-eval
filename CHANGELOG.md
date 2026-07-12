@@ -26,6 +26,11 @@ for repository structure and `git log` for full detail.
   same aggregate refusal rate.
 
 ### Safety and hygiene
+- Documented the public disclosure scope after 30 June 2026 and replaced the
+  obsolete private/authorized-review classification with explicit included and
+  withheld boundaries.
+- Removed audience-specific wording, session handoff notes, user-specific
+  cluster paths, and local credential-file assumptions from the public tree.
 - Raw response corpus and resolved select-agent sequences are gated out of the
   shareable tree; only redacted, aggregate-only outputs ship under
   `pilot/results_public/`.

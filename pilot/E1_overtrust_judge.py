@@ -26,8 +26,8 @@ Sonnet 4.6 / Opus 4.6 refuse to judge bio responses (v0.2.5), so they are not us
 as judges here.
 
 Usage:
-  source ~/.api_keys && python3 E1_overtrust_judge.py results/E1_subject_<ts>.json
-  source ~/.api_keys && python3 E1_overtrust_judge.py results/E1_subject_<ts>.json --limit 20
+  python3 E1_overtrust_judge.py results/E1_subject_<ts>.json
+  python3 E1_overtrust_judge.py results/E1_subject_<ts>.json --limit 20
 """
 
 import argparse

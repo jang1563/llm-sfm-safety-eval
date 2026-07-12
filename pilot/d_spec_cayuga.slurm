@@ -17,12 +17,12 @@
 #   sbatch d_spec_cayuga.slurm llama   # requires HF_TOKEN + license acceptance
 #
 # Submit with corrected SLURM binary:
-#   /opt/ohpc/pub/software/slurm/24.05.2/bin/sbatch d_spec_cayuga.slurm mistral
+#   sbatch d_spec_cayuga.slurm mistral
 
 set -euo pipefail
 
 MODEL_KEY="${1:-mistral}"
-SCRATCH="${SCRATCH:-/athena/masonlab/scratch/users/${USER}}"
+SCRATCH="${SCRATCH:-${HOME}/scratch}"
 PROJECT_DIR="${PROJECT_DIR:-${SCRATCH}/d_spec_experiment}"
 HF_CACHE="${HF_CACHE:-${SCRATCH}/hf_cache}"
 ENV_NAME="d_spec_vllm"
@@ -73,7 +73,7 @@ export HF_HUB_CACHE="${HF_CACHE}"
 
 # Set HF_TOKEN if available (needed for Llama, Gemma)
 if [ -n "${HF_TOKEN:-}" ]; then
-    echo "HF_TOKEN: ...${HF_TOKEN: -4}"
+    echo "HF_TOKEN is set"
 else
     echo "HF_TOKEN: not set (OK for Mistral, Qwen)"
 fi

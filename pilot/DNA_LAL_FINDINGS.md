@@ -89,6 +89,5 @@ Build **Table 20 `tab:dna_crossmodal`** parallel to chem Table 19
 `tab:chem_crossmodal`: DNA LAL E-null (−0.010) + judge S1′ null + gate Youden's J.
 Add a `\paragraph` after the chem cross-modal block; abstract clause (3rd LAL
 modality + the chem-broad/DNA-sharp gate contrast); discussion load-bearing-gate
-paragraph gets the "granularity tracks designation" nuance. NOTE paper is at 89pp
-(another session edited it 88->89); check current text before each edit to avoid
-collision; chem `tab:chem_crossmodal` intact (2 refs).
+paragraph gets the "granularity tracks designation" nuance. The current draft is
+89 pages; chem `tab:chem_crossmodal` is intact (2 refs).

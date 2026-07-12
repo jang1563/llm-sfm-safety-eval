@@ -11,8 +11,8 @@
 # (Mar 2025) so it supports Cohere2ForCausalLM (command-a-03-2025's architecture).
 set -e
 
-ENV_PATH=/expanse/lustre/projects/crl195/jkim61/conda_envs/d_spec_vllm_cu124
-PROJ=/expanse/lustre/scratch/jkim61/temp_project/d_spec_experiment
+ENV_PATH="${ENV_PATH:-${HOME}/.conda/envs/d_spec_vllm_cu124}"
+PROJ="${PROJECT_DIR:-${SCRATCH:-${HOME}/scratch}/d_spec_experiment}"
 SENTINEL="${PROJ}/logs/env_cu124.done"
 mkdir -p "${PROJ}/logs"
 rm -f "${SENTINEL}"
