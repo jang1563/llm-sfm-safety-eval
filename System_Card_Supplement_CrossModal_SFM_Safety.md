@@ -70,7 +70,9 @@ A complementary chemistry gate-probe sharpens the chemistry case: the model name
 
 ## 5. The safety layer is infrastructure, not capability (Claude-exclusivity)
 
-Open-weight panels across all three domains - 8-model protein, 12-model chemistry (incl. Command-A 111B at faithful fp8), 9-model DNA; 3.8B-111B, 7 vendors - produce **0% genuine safety refusals** while identifying the hazard agents by name 98-100% of the time.
+Open-weight panels across all three domains - 8-model protein, 12-model chemistry (incl. Command-A 111B at faithful fp8), 9-model DNA; 3.8B-111B, 7 vendors - produce **0% genuine safety refusals** while identifying the hazard agents by name at the plain-name identifier level.
+
+> **Scoping note (added 2026-09-04), so these two numbers can be recomputed from the released table.** "0% genuine" is a classification made from response text: the released `refusal` column is *detector-level* and recomputes to **326/23,100 = 1.41%**, spread across 13 of 14 open-weight configurations at 0.00-2.95% each, which the analysis reads as capability disclaimers rather than safety refusals. The response text is not released, so that split cannot be re-derived from the table. "98-100% naming" is measured at `ID-0`: chemistry hazard categories are 99.8% and 100%, while DNA select-agent toxins pool to **89.6% (806/900)** because a single outlier (Ministral 3 8B Instruct, 14%) drags a panel whose median model is at exactly 100% and whose other eight members are at 92% or above. The accurate phrasing for DNA is *eight of nine models at 92% or above, one that does not recognize these agents by name.*
 
 - Capability (knowing what VX / botulinum / anthrax are) is **ubiquitous**.
 - The refusal behavior is **Claude-exclusive managed-access infrastructure**, not an emergent property of scale: Command-A 111B resolves registry keys no better than Phi-4 Mini 3.8B, and at faithful fp8 precision refuses 0/1050 CWC prompts while naming agents 99% - capability present, dedicated safety absent.

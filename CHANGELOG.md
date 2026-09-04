@@ -5,6 +5,24 @@ for repository structure and `git log` for full detail.
 
 ## Unreleased
 
+### Documentation
+- **Scoping added to two headline findings so they can be recomputed from the
+  released table** (2026-09-04). Neither result changed; both were stated without
+  the basis a reader needs to reproduce them.
+  - `refusal` in `data/llm_sfm_refusal_trials.jsonl` is **detector-level** and
+    recomputes to 326/23,100 = 1.41% across the open-weight rows, spread over 13
+    of 14 configurations at 0.00-2.95%. The "0% genuine refusals" figure is a
+    classification of that text as capability disclaimer rather than safety
+    refusal, and the response text is not released, so the split cannot be
+    re-derived here. Both numbers are now named in the README and the supplement.
+  - "Naming the hazard agents 98-100%" is measured at `ID-0`. Chemistry is
+    99.8% and 100%; DNA select-agent toxins pool to 89.6% (806/900) because one
+    outlier model sits at 14% while seven of nine are at exactly 100% and the
+    median model is 100%. The DNA phrasing is corrected to "eight of nine models
+    at 92% or above, one that does not recognize these agents by name."
+  - Noted that the classifier-pendulum sequence **is not in this table**, which
+    contains one managed configuration (`claude-sonnet-4-6`, protein, 1,200 rows).
+
 ### Evaluation
 - Cross-modal safety evaluation across three hazard domains (protein, chemistry,
   genomic) on the LLM x SFM interpretation channel.

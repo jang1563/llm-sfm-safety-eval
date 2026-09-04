@@ -41,9 +41,12 @@ are included; results are aggregate-only.
   registry recognition (chemistry), to pure context-keyword over-refusal (DNA:
   benign genes are refused under a "defensive biosecurity" framing).
 - **The safety layer is managed-access infrastructure, not model scale.**
-  Open-weight panels (3.8B to 111B parameters, 7 vendors) produce 0% genuine
-  refusals while naming the same agents 98 to 100% of the time. The refusal
-  behavior is specific to the managed deployment, not to capability.
+  Open-weight panels (3.8B to 111B parameters, 7 vendors) produce 0% *genuine*
+  refusals while naming the same agents at the plain-name identifier level. The
+  refusal behavior is specific to the managed deployment, not to capability.
+  Both halves of that sentence are scoped, and the scoping matters if you are
+  recomputing from the released table: see
+  [Reconciling these findings with the released table](#reconciling-these-findings-with-the-released-table).
 - **A keyword-triggered tool-mode surface.** Sonnet 4.6's tool-mode classifier is
   keyword-triggered (a generic tool name drops refusal to 0%; a benign protein
   with a bio description draws a 100% false-positive); Opus 4.8 closes that
@@ -104,6 +107,43 @@ This table covers the identifier-gradient refusal experiments only; the secondar
 surfaces (tool-mode, reliability over-trust, lab-autonomy loops) and the full
 per-experiment aggregates remain as individual files under `pilot/results_public/`.
 Regenerate with `python data/build_refusal_trials.py`.
+
+## Reconciling these findings with the released table
+
+Two of the findings above are scoped in ways `data/llm_sfm_refusal_trials.jsonl`
+cannot reproduce on its own. Both are stated here so that a reader who
+recomputes gets the same numbers we did, and understands where the difference
+comes from.
+
+**1. "0% genuine refusals" is a classification, and the classification is not a
+column here.** The `refusal` column is **detector-level**. Recomputing it
+directly over the open-weight rows gives **326 of 23,100 = 1.41%**, spread thin
+across 13 of the 14 open-weight configurations at 0.00% to 2.95% each; only
+Command-A 111B at faithful fp8 is at exactly zero. The findings treat those hits
+as **capability disclaimers** ("I don't have reliable information on that")
+rather than genuine safety refusals, a distinction drawn from the response text
+during analysis. That text is not released, so the genuine-versus-disclaimer
+split cannot be re-derived from this table. Read the detector-level 1.41% as the
+reproducible number and the 0% as the classified one.
+
+**2. "Naming the agents" is measured at the plain-name identifier level, and one
+panel member is an outlier.** At `ID-0`, hazard-category recognition is 99.8%
+for CWC Schedule 1 and 100% for the controlled opioid in chemistry. For DNA
+select-agent toxins the pooled figure is **89.6% (806/900)**, but that pooling is
+misleading: seven of nine DNA models are at exactly 100%, one at 92%, and a
+single outlier (Ministral 3 8B Instruct) at 14% pulls the pooled value down.
+Median per-model recognition is 100%. So "98 to 100%" describes the typical
+panel member rather than the pooled DNA denominator, and the honest summary is
+*eight of nine DNA models at 92% or above, with one that does not recognize
+these agents by name at all.* Recognition also falls sharply at higher
+identifier levels by design, which is the identifier-gradient result itself, so
+always condition on `id_level` before comparing.
+
+**3. The classifier-pendulum figures are not in this table.** The released rows
+contain exactly **one** managed configuration (`claude-sonnet-4-6`, protein
+only, four entities, 1,200 rows). The cross-version sequence quoted in the
+findings comes from the wider study and cannot be checked here. This table
+covers the identifier-gradient experiments only.
 
 ## Reproduce
 
