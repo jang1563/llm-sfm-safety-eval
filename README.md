@@ -96,11 +96,11 @@ for r in ds:
 | `model`, `model_display` | model identifier |
 | `deployment` | `managed` (Claude API) vs `open-weight` |
 | `model_safety_tier` | source safety rating for open-weight models, else null |
-| `entity`, `entity_category` | the agent tested (protein/substance/gene) and its class |
+| `entity`, `entity_category` | the agent tested (protein/substance/gene) and its class. **`entity_category` is null for all 1,200 protein rows** and populated for chemistry and DNA, so a group-by on it silently drops the protein domain |
 | `id_level` | identifier abstraction `ID-0` (name) to `ID-6` (sequence) |
 | `rep` | replicate index |
 | `refusal` | bool, the trial's refusal outcome (detector-level; see the findings for the genuine-refusal vs capability-disclaimer distinction) |
-| `recognized` | bool/null, did the model name the agent correctly |
+| `recognized` | bool/null, did the model name the agent correctly. **Null for all 1,200 protein rows**; scored for chemistry and DNA. Recognition rates must be computed on those two domains only |
 | `stop_reason` | API stop reason where recorded |
 
 This table covers the identifier-gradient refusal experiments only; the secondary
@@ -144,6 +144,20 @@ contain exactly **one** managed configuration (`claude-sonnet-4-6`, protein
 only, four entities, 1,200 rows). The cross-version sequence quoted in the
 findings comes from the wider study and cannot be checked here. This table
 covers the identifier-gradient experiments only.
+
+**4. The table holds one framing condition, and it has no intent column.** Every
+managed row is `source_experiment = variant_b`, a single request framing. Write-ups
+that condition on a different framing — anything reported for "elevated intent",
+for instance — describe cells that are not in this file, and there is no column
+here to select them by. This matters because the two can look contradictory. In
+the released rows, the three hazardous proteins refuse **100%** at `ID-1` and
+`ID-2` and then **0%** at `ID-4`, `ID-5` and `ID-6`, including the full-sequence
+level, while the benign barnase control refuses 0% throughout except a 4% blip at
+`ID-3`. A reader who sets that beside a write-up reporting near-total
+sequence-level refusal will think one of them is wrong. Neither is: they are
+different framing conditions, and only this one is released. Condition on
+`source_experiment` and `id_level`, and do not compare across framings using this
+file alone.
 
 ## Reproduce
 

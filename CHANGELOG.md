@@ -22,6 +22,12 @@ for repository structure and `git log` for full detail.
     at 92% or above, one that does not recognize these agents by name."
   - Noted that the classifier-pendulum sequence **is not in this table**, which
     contains one managed configuration (`claude-sonnet-4-6`, protein, 1,200 rows).
+  - Noted that the table holds **one framing condition** (`variant_b`) and carries
+    **no intent column**, so findings conditioned on a different framing cannot be
+    selected here. Stated the released protein pattern explicitly (100% refusal at
+    ID-1/ID-2, 0% at ID-4 through ID-6 including full sequence) so it is not
+    mistaken for a contradiction of write-ups reporting near-total sequence-level
+    refusal under a different framing.
 
 ### Evaluation
 - Cross-modal safety evaluation across three hazard domains (protein, chemistry,
